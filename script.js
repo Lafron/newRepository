@@ -23,19 +23,12 @@ function checkNum(rNum, counter){
             {
                 Answ = +Answ.trim();
                 if(Answ > rNum){
-                counter--;
-                console.log("Загаданное число меньше, осталось попыток: ",counter);
-
-                getAnsw();
+                    messegeFunc("меньше");
                 }
                 else if(Answ < rNum){
-                counter--;
-                console.log("Загаданное число больше, осталось попыток: ",counter);
-
-                getAnsw();
+                    messegeFunc("больше");
                 }
                 else if(Answ == rNum){
-                
                 let choice = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
                 checkBool(choice);                
                 }
@@ -46,6 +39,12 @@ function checkNum(rNum, counter){
         
         }
         
+    }
+    
+    function messegeFunc(big){
+        counter--;
+        console.log(`Загаданное число ${big}, осталось попыток: ,${counter}`);
+        getAnsw();
     }
     
     function checkBool(bl){
