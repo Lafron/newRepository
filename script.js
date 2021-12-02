@@ -4,7 +4,13 @@ checkNum(Math.round(100 * Math.random()), 10);
 
 function checkNum(rNum, counter){
     
-    getAnsw();
+    const messegeFun = big =>{
+        counter--;
+        console.log(`Загаданное число ${big}, осталось попыток: ,${counter}`);
+        getAnsw();
+    };       
+
+    getAnsw(); 
 
     function getAnsw(){
         if(counter < 1){
@@ -23,10 +29,10 @@ function checkNum(rNum, counter){
             {
                 Answ = +Answ.trim();
                 if(Answ > rNum){
-                    messegeFunc("меньше");
+                    messegeFun("меньше");
                 }
                 else if(Answ < rNum){
-                    messegeFunc("больше");
+                    messegeFun("больше");
                 }
                 else if(Answ == rNum){
                 let choice = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
@@ -40,13 +46,7 @@ function checkNum(rNum, counter){
         }
         
     }
-    
-    function messegeFunc(big){
-        counter--;
-        console.log(`Загаданное число ${big}, осталось попыток: ,${counter}`);
-        getAnsw();
-    }
-    
+        
     function checkBool(bl){
         if(bl){
             checkNum(Math.round(100 * Math.random()), 10);                    
