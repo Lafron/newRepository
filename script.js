@@ -1,41 +1,61 @@
-const RandomNumber = Math.round(100 * Math.random());
+'use strict';
 
+checkNum(Math.round(100 * Math.random()), 10);
 
-function checkNum(rNum){
+function checkNum(rNum, counter){
+    
+    getAnsw();
+
     function getAnsw(){
-        let Answ = prompt("Угадай число от 1 до 100");
-         //console.log(Answ);
-        if(isNaN(Answ))
-        {
-            alert("Введите валидное число!");
-            getAnsw();
-        }
-        if(Answ != null)
-        {
-            Answ = +Answ.trim();
-            if(Answ > rNum){
-                console.log("Загаданное число меньше");
-               // console.log(Answ);
-                //console.log(RandomNumber);
-                getAnsw();
-            }
-            else if(Answ < rNum){
-                console.log("Загаданное число больше");
-                //console.log(Answ);
-                //console.log(RandomNumber);
-                getAnsw();
-            }
-            else if(Answ == rNum){
-                console.log("Поздравляю, Вы угадали!!!");
-                //console.log(Answ);
-                //console.log(RandomNumber);
-            }
+        if(counter < 1){
+            let choice = confirm("Попытки закончились, хотите сыграть еще?");
+            checkBool(choice);
         }
         else{
-            console.log("игра окончена!!!");
+            let Answ = prompt("Угадай число от 1 до 100");
+         
+            if(isNaN(Answ))
+            {
+                alert("Введите валидное число!");
+                getAnsw();
+            }
+            if(Answ != null)
+            {
+                Answ = +Answ.trim();
+                if(Answ > rNum){
+                counter--;
+                console.log("Загаданное число меньше, осталось попыток: ",counter);
+
+                getAnsw();
+                }
+                else if(Answ < rNum){
+                counter--;
+                console.log("Загаданное число больше, осталось попыток: ",counter);
+
+                getAnsw();
+                }
+                else if(Answ == rNum){
+                
+                let choice = confirm("Поздравляю, Вы угадали!!! Хотели бы сыграть еще?");
+                checkBool(choice);                
+                }
+            }
+            else{
+                checkBool(false);
+            }
+        
         }
         
     }
-    getAnsw();
+    
+    function checkBool(bl){
+        if(bl){
+            checkNum(Math.round(100 * Math.random()), 10);                    
+        }
+        else{
+            alert("игра окончена!");
+        }
+    }
 }
-checkNum(RandomNumber);
+
+
